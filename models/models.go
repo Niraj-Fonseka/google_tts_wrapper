@@ -1,22 +1,26 @@
 package models
 
 import (
-	"context"
 	"fmt"
 	"os"
+	"time"
+	"webapp_go/models/entities"
 
 	"cloud.google.com/go/datastore"
+	"golang.org/x/net/context"
 )
 
 //DataStoreClient - global variable for the datastore client
 var DataStoreClient *datastore.Client
+var gcloudContext context.Context
 
 func InitializeDatastore() {
-	ctx := context.Background()
+
+	gcloudContext = context.Background()
 	projectID := os.Getenv("PROJECT_ID")
 
 	// Creates a client.
-	client, err := datastore.NewClient(ctx, projectID)
+	client, err := datastore.NewClient(gcloudContext, projectID)
 
 	//Initializing the local client with the Global variable
 	DataStoreClient = client
@@ -26,6 +30,14 @@ func InitializeDatastore() {
 	}
 }
 
-func CreateCredentials() {
+func CreateCredentials(username string, password string) {
+	//var creds entities.Credentials
 
+	creds := &entities.Credentials{
+		Username: username,
+		Password: password,
+		Created:  time.Now(),
+	}
+	key := datastore.IncompleteKey("Task", nil)
+	DataStoreClient.Put(gcloudContext, key, creds)
 }
