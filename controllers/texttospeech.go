@@ -21,6 +21,21 @@ type DataToDecode struct {
 	Data string `json:"data"`
 }
 
+func GETDailyReport(c *gin.Context) {
+	news := FetchNewsData("cnn", os.Getenv("NEWSAPI"))
+	_, err := getDecodedBase64(string(news))
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	//generating audio file
+	generateAudioFile()
+}
+
 func RunDailyReport(c *gin.Context) {
 	var decodeFromPOST DataToDecode
 
