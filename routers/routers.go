@@ -13,6 +13,7 @@ func InitializeRouters() *gin.Engine {
 	v1 := Router.Group("/")
 	{
 		v1.GET("/hello", controllers.GetHealth)
+		v1.GET("/news/:source", controllers.GetBreakingNews)
 		v1.POST("/decode", controllers.RunDailyReport)
 
 	}
