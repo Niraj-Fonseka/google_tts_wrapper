@@ -52,9 +52,10 @@ func RunDailyReport(c *gin.Context) {
 }
 
 func generateAudioFile() {
-	cmd := exec.Command("base64", "dailyReport.txt -d > dest_audio_file.mp3")
+	cmdBase := exec.Command("sh", "script.sh")
+	//cmd := exec.Command("cat", "dailyReport.txt")
 
-	if err := cmd.Run(); err != nil {
+	if err := cmdBase.Run(); err != nil {
 		log.Fatal(err)
 	}
 }
@@ -83,25 +84,10 @@ func getDecodedBase64(toDecode string) (int, error) {
 	ttsConfig.AudioConfig.Pitch = "0.00"
 	ttsConfig.AudioConfig.SpeakingRate = "1.00"
 
-	ttsConfig.Input.Text = "Hello from the other side"
+	ttsConfig.Input.Text = toDecode
 
 	ttsConfig.Voice.LanguageCode = "en-US"
 	ttsConfig.Voice.Name = "en-US-Wavenet-E"
-
-	// var textToSpeechConfigJson = []byte(`{
-	// 	"audioConfig": {
-	// 	  "audioEncoding": "LINEAR16",
-	// 	  "pitch": "0.00",
-	// 	  "speakingRate": "1.00"
-	// 	},
-	// 	"input": {
-	// 		"text":` + toDecode + `
-	// 	},
-	// 	"voice": {
-	// 	  "languageCode": "en-US",
-	// 	  "name": "en-US-Wavenet-E"
-	// 	}
-	//   }`)
 
 	data, _ := json.Marshal(ttsConfig)
 	textToSpeechConfigJson := []byte(string(data))
