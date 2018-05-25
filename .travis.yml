@@ -3,5 +3,9 @@ language: go
 go:
 - tip # The latest version of Go.
 
+
+before_install:
+  - export GOROOT=$(go env GOROOT)
+  
 script:
 - "./build.sh"
