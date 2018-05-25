@@ -22,7 +22,8 @@ type DataToDecode struct {
 }
 
 func GETDailyReport(c *gin.Context) {
-	news := FetchNewsData("cnn", os.Getenv("NEWSAPI"))
+	news := GenerateNewsStatement()
+
 	_, err := getDecodedBase64(string(news))
 
 	if err != nil {
@@ -107,6 +108,7 @@ func getDecodedBase64(toDecode string) (int, error) {
 	data, _ := json.Marshal(ttsConfig)
 	textToSpeechConfigJson := []byte(string(data))
 
+	fmt.Printf("Text to speech Config : %s \n", string(textToSpeechConfigJson))
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(textToSpeechConfigJson))
 
 	if err != nil {

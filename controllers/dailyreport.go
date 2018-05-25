@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
 
 	//"encoding/json"
 
@@ -47,10 +48,12 @@ func GenerateNewsStatement() string {
 	json.Unmarshal(news, &newsStructured)
 
 	var newsOutput string
+	newsOutput += "Here are the top headlines. \n"
 	for _, record := range newsStructured.Articles {
-		newsOutput += "Here are the top headlines." + record.Title
+		newsOutput += record.Title + ","
 	}
 
+	fmt.Println(newsOutput)
 	return newsOutput
 
 }
