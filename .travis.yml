@@ -6,6 +6,7 @@ go:
 
 before_install:
   - export GOROOT=$(go env GOROOT)
+  - chmod +x build.sh
 
 
 sudo: enabled
