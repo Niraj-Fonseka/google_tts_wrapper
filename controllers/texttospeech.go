@@ -21,6 +21,22 @@ type DataToDecode struct {
 	Data string `json:"data"`
 }
 
+func GETDailyReport(c *gin.Context) {
+	news := GenerateNewsStatement()
+
+	_, err := getDecodedBase64(string(news))
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	if err != nil {
+		fmt.Println(err)
+	}
+	//generating audio file
+	generateAudioFile()
+}
+
 func RunDailyReport(c *gin.Context) {
 	var decodeFromPOST DataToDecode
 
@@ -92,6 +108,7 @@ func getDecodedBase64(toDecode string) (int, error) {
 	data, _ := json.Marshal(ttsConfig)
 	textToSpeechConfigJson := []byte(string(data))
 
+	fmt.Printf("Text to speech Config : %s \n", string(textToSpeechConfigJson))
 	req, err := http.NewRequest("POST", url, bytes.NewBuffer(textToSpeechConfigJson))
 
 	if err != nil {

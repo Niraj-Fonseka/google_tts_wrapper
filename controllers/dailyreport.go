@@ -1,9 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
 	"fmt"
-	"io/ioutil"
+
 	//"encoding/json"
+
 	"net/http"
 	"os"
 	"time"
@@ -31,15 +33,27 @@ type News struct {
 func GetBreakingNews(c *gin.Context) {
 	source := c.Param("source")
 	apiKey := os.Getenv("NEWSAPI")
-	newsURLBuilder := fmt.Sprintf("https://newsapi.org/v2/top-headlines?sources=%s&apiKey=%s", source, apiKey)
-	resp, _ := http.Get(newsURLBuilder)
 
-	body, _ := ioutil.ReadAll(resp.Body)
-	//var news News
-
-	// err := json.Unmarshal(body,&news)
-
+	news := FetchNewsData(source, apiKey)
 	// fmt.Println(err)
 	c.Writer.Header().Set("Content-Type", "application/json")
-	c.String(http.StatusOK, string(body))
+	c.String(http.StatusOK, string(news))
+}
+
+func GenerateNewsStatement() string {
+	news := FetchNewsData("cnn", os.Getenv("NEWSAPI"))
+
+	var newsStructured News
+
+	json.Unmarshal(news, &newsStructured)
+
+	var newsOutput string
+	newsOutput += "Here are the top headlines. \n"
+	for _, record := range newsStructured.Articles {
+		newsOutput += record.Title + ","
+	}
+
+	fmt.Println(newsOutput)
+	return newsOutput
+
 }
