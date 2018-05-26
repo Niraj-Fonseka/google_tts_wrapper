@@ -12,8 +12,8 @@ before_install:
 sudo: enabled
 install:
   # Add Godeps dependencies to GOPATH and PATH
-  - export GOPATH="${TRAVIS_BUILD_DIR}/_workspace:$GOPATH"
-  - export PATH="${TRAVIS_BUILD_DIR}/_workspace/bin:$PATH"
+  - export GOPATH="${TRAVIS_BUILD_DIR}/:$GOPATH"
+  - export PATH="${TRAVIS_BUILD_DIR}//bin:$PATH"
 
 script:
 - go env
