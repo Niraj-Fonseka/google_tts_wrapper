@@ -16,4 +16,5 @@ install:
   - export PATH="${TRAVIS_BUILD_DIR}/_workspace/bin:$PATH"
 
 script:
+- go env
 - "./build.sh"
