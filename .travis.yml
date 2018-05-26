@@ -7,6 +7,7 @@ go:
 before_install:
   - chmod +x build.sh
 
+go_import_path: src/github.com/Niraj-Fonseka/webapp_go
 
 sudo: enabled
 
