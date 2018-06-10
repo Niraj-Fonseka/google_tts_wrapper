@@ -1,7 +1,7 @@
 package routers
 
 import (
-	"webapp_go/controllers"
+	"google_tts_wrapper/controllers"
 
 	"github.com/gin-gonic/gin"
 )

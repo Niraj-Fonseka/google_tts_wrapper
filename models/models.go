@@ -2,9 +2,9 @@ package models
 
 import (
 	"fmt"
+	"google_tts_wrapper/models/entities"
 	"os"
 	"time"
-	"webapp_go/models/entities"
 
 	"cloud.google.com/go/datastore"
 	"golang.org/x/net/context"

@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"webapp_go/models"
-	"webapp_go/routers"
+	"google_tts_wrapper/models"
+	"google_tts_wrapper/routers"
 )
 
 func init() {

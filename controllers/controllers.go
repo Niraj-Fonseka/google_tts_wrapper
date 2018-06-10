@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"webapp_go/models"
+	"google_tts_wrapper/models"
 
 	"github.com/gin-gonic/gin"
 )

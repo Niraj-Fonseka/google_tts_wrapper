@@ -68,7 +68,7 @@ func RunDailyReport(c *gin.Context) {
 }
 
 func generateAudioFile() {
-	cmdBase := exec.Command("sh", "script.sh")
+	cmdBase := exec.Command("sh", os.Getenv("SCRIPT"))
 	//cmd := exec.Command("cat", "dailyReport.txt")
 
 	if err := cmdBase.Run(); err != nil {
