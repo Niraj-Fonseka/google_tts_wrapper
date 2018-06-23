@@ -15,7 +15,6 @@ func InitializeRouters() *gin.Engine {
 		v1.GET("/health", controllers.GetHealth)
 		v1.GET("/generate_report", controllers.GETDailyReport)
 		v1.GET("/news/:source", controllers.GetBreakingNews)
-		v1.POST("/decode", controllers.RunDailyReport)
 
 	}
 	return Router
