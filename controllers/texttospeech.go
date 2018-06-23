@@ -103,7 +103,7 @@ func getDecodedBase64(toDecode string) (int, error) {
 	ttsConfig.Input.Text = toDecode
 
 	ttsConfig.Voice.LanguageCode = "en-US"
-	ttsConfig.Voice.Name = "en-US-Wavenet-E"
+	ttsConfig.Voice.Name = "en-US-Wavenet-D"
 
 	data, _ := json.Marshal(ttsConfig)
 	textToSpeechConfigJson := []byte(string(data))

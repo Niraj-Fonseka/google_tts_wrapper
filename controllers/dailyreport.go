@@ -48,9 +48,9 @@ func GenerateNewsStatement() string {
 	json.Unmarshal(news, &newsStructured)
 
 	var newsOutput string
-	newsOutput += "Here are the top headlines. \n"
+	newsOutput += "Here are the top headlines. "
 	for _, record := range newsStructured.Articles {
-		newsOutput += record.Title + ","
+		newsOutput += record.Title + ". "
 	}
 
 	fmt.Println(newsOutput)

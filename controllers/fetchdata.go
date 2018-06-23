@@ -8,7 +8,7 @@ import (
 
 func FetchNewsData(source string, apiKey string) []byte {
 
-	newsURLBuilder := fmt.Sprintf("https://newsapi.org/v2/top-headlines?sources=%s&apiKey=%s", source, apiKey)
+	newsURLBuilder := fmt.Sprintf("https://newsapi.org/v2/top-headlines?country=us&apiKey=%s", apiKey)
 	resp, _ := http.Get(newsURLBuilder)
 
 	body, _ := ioutil.ReadAll(resp.Body)
