@@ -1,3 +1,4 @@
 .DS_Store
 .env
-SAforDatastore.json
+*.mp3
+dailyReport.txt
