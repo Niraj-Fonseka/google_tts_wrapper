@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
+	"google_tts_wrapper/generatespeech"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -22,7 +23,7 @@ type DataToDecode struct {
 }
 
 func GETDailyReport(c *gin.Context) {
-	news := GenerateNewsStatement()
+	news := generatespeech.GenerateNewsStatement()
 
 	_, err := getDecodedBase64(string(news))
 
